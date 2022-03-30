@@ -1,0 +1,29 @@
+using A2B_APP_Extension.Controllers.Sharefile;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace A2B_APP_Extension
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            VideoFrameExtractor StartVideoExtractor = new VideoFrameExtractor();
+            _ = StartVideoExtractor.SetJobAsync();
+            CreateHostBuilder(args).Build().Run();
+        }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
+    }
+}
